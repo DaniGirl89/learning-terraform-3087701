@@ -17,7 +17,7 @@ data "aws_ami" "app_ami" {
 data "aws_vpc" "default" {
   default = true
 }
-resource "aws_instance" "blog" {
+resource "aws_instance" "web" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
 
@@ -48,7 +48,7 @@ resource "aws_security_group_rule" "blog_http_in" {
 resource "aws_security_group_rule" "blog_https_in" {
   type        = "ingress"
   from_port   = 443
-  to_port     = 80443
+  to_port     = 443
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
